@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "direction": "in",
+      "methods": [
+        "post",
+        "get"
+      ],
+      "name": "Request",
+      "type": "httpTrigger"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "outputDocument",
+      "databaseName": "TestDB",
+      "collectionName": "TestContainer",
+      "createIfNotExists": "false",
+      "connectionStringSetting": "AccountEndpoint=https://396finaldb.documents.azure.com:443/;AccountKey=aXwHg0wxRnRexwpGgmhbOUfndO8pOtBccpBpymsemNnMi3BVS080xewDegnI33SZt5I0pM7eAdATACDbH1hnMQ=="
+    }
+  ]
+}

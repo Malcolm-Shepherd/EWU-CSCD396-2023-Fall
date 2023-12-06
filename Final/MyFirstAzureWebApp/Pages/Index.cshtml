@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<head>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+
+<div class="jumbotron">
+    <h1>Review the cat? 💜</h1>
+    <form name="myForm" id="myForm">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="review">Review:</label><br>
+        <input type="text" id="review" name="review">
+        <input type="submit" value="submit">
+        
+    </form>
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Juvenile_Ragdoll.jpg/800px-Juvenile_Ragdoll.jpg" alt="Cat">
+    
+</div>
+
+<script type="text/javascript">
+    const form = document.querySelector('form')
+    form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const json = JSON.stringify(Object.fromEntries(formData));
+    console.log(json);
+    $.ajax({
+            type: "POST",
+            url: "https://396final-func.azurewebsites.net/api/AddReview",
+            crossDomain: true,
+            data: json,
+            dataType: "json",
+            contentType : "application/json; charset=utf-8",
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function(data){alert(data);},
+            error: function(errMsg) {
+                alert(errMsg);
+            }
+        });
+    })
+</script>

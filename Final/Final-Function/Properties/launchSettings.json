@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Final_Function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7016",
+      "launchBrowser": false
+    }
+  }
+}
