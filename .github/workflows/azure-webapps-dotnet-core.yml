@@ -56,7 +56,7 @@ jobs:
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         run: dotnet build --configuration Release
   
-        - name: Initialize
+      - name: Initialize
         run: dotnet user-secrets init
         
       - name: Set Connection String
