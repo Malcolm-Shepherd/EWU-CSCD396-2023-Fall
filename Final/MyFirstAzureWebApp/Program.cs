@@ -1,4 +1,3 @@
-using Azure.Identity;
 using MyFirstAzureWebApp;
 
 var builder = WebApplication.CreateBuilder(args);
