@@ -9,6 +9,7 @@
 
 <div class="jumbotron">
     <h1>Review the cat? 💜 💜</h1>
+
     <form name="myForm" id="myForm">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname"><br>
@@ -25,11 +26,13 @@
 </div>
 
 <script type="text/javascript">
+
     const form = document.querySelector('form')
     form.addEventListener('submit', (e) => {
     e.preventDefault()
     const formData = new FormData(e.target)
     const json = JSON.stringify(Object.fromEntries(formData));
+    var key = '@Model.Secrets.ApiSubKey';
     console.log(json);
     $.ajax({
             type: "POST",
@@ -40,7 +43,7 @@
             contentType : "application/json; charset=utf-8",
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Ocp-Apim-Subscription-Key': 'cb3ff8693873422897a0785aa4c897b7',
+                'Ocp-Apim-Subscription-Key': key,
             },
             success: function(){}
         });

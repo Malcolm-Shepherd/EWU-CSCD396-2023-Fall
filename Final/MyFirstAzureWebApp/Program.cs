@@ -1,7 +1,20 @@
+using Azure.Identity;
+using MyFirstAzureWebApp;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Retrieve the connection string
+string connectionString = builder.Configuration.GetConnectionString("AppConfig")!;
+
+// Load configuration from Azure App Configuration
+builder.Configuration.AddAzureAppConfiguration(connectionString);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Bind configuration "TestApp:Settings" section to the Settings object
+builder.Services.Configure<Secrets>(builder.Configuration.GetSection("App:Secrets"));
+
 
 var app = builder.Build();
 
