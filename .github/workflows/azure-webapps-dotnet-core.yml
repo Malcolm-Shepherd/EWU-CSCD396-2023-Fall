@@ -58,7 +58,7 @@ jobs:
         
       - name: Set Connection String
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        run: dotnet user-secrets set ConnectionStrings:AppConfig ${{ secrets.AZURE_APPCONFIG_CONNECTIONSTRING }}
+        run: dotnet user-secrets set ConnectionStrings:AppConfig "${{ secrets.AZURE_APPCONFIG_CONNECTIONSTRING }}"
             
       - name: Build with dotnet
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
