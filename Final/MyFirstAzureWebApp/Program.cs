@@ -4,7 +4,7 @@ using Azure.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Retrieve the connection string
-string connectionString = builder.Configuration.GetConnectionString("AppConfig")!;
+string connectionString = "Endpoint=https://finalappconfig.azconfig.io;Id=L8Ma;Secret=5IoEddje11+Hmr9Rid1IoSZfdAlqqrZdzhcrICR2itk=";
 
 // Load configuration from Azure App Configuration
 builder.Configuration.AddAzureAppConfiguration(connectionString);

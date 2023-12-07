@@ -2,8 +2,7 @@
   "dependencies": {
     "appConfig1": {
       "type": "appConfig",
-      "connectionId": "ConnectionStrings:AppConfig",
-      "dynamicId": null
+      "connectionId": "AppConfig"
     }
   }
 }
