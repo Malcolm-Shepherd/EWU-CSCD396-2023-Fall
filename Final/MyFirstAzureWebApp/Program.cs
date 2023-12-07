@@ -4,15 +4,18 @@ using Azure.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Retrieve the connection string
-/*string connectionString = builder.Configuration.GetConnectionString("AppConfig")!;
+string connectionString = builder.Configuration.GetConnectionString("AppConfig")!;
 
 // Load configuration from Azure App Configuration
-builder.Configuration.AddAzureAppConfiguration(connectionString);*/
-
-builder.Configuration.AddAzureAppConfiguration(options => 
-    options.Connect(
-        new Uri(builder.Configuration["AppConfig:Endpoint"]),
-        new ManagedIdentityCredential()));
+if(connectionString != null){
+    builder.Configuration.AddAzureAppConfiguration(connectionString);
+}
+else{
+    builder.Configuration.AddAzureAppConfiguration(options => 
+        options.Connect(
+            new Uri(builder.Configuration["AppConfig:Endpoint"]),
+            new ManagedIdentityCredential()));
+}
 
 // Add services to the container.
 builder.Services.AddRazorPages();
