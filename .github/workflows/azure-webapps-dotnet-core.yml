@@ -51,16 +51,16 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-
-      - name: Initialize
+            
+      - name: Build with dotnet
+        working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        run: dotnet build --configuration Release
+  
+        - name: Initialize
         run: dotnet user-secrets init
         
       - name: Set Connection String
         run: dotnet user-secrets set ConnectionStrings:AppConfig ${{ secrets.AZURE_APPCONFIG_CONNECTIONSTRING }}
-
-      - name: Build with dotnet
-        working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        run: dotnet build --configuration Release
 
       - name: dotnet publish
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
