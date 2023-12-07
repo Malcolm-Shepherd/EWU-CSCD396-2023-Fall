@@ -52,6 +52,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
+      - name: Initialize
+        working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        run: dotnet user-secrets init
+        
+      - name: Set Connection String
+        working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        run: dotnet user-secrets set ConnectionStrings:AppConfig "${{ secrets.AZURE_APPCONFIG_CONNECTIONSTRING }}"
+            
       - name: Build with dotnet
         working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
         run: dotnet build --configuration Release
